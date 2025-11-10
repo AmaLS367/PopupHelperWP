@@ -1,0 +1,581 @@
+/* Popup redesign: Digital Nomad
+   Font: Inter. Headings 800. Soft shadows. Big CTAs.
+   Icons from assets/img via ::before and <img>.
+*/
+
+/* ===== Overlay ===== */
+.rh-overlay,
+.rh-popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 16, 29, 0.50);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    backdrop-filter: blur(1.5px);
+}
+.rh-overlay.rh-visible,
+.rh-popup-overlay.rh-visible {
+    display: flex;
+    opacity: 1;
+}
+
+/* ===== Container ===== */
+.rh-popup {
+    position: relative;
+    width: 100%;
+    max-width: 780px;
+    border-radius: 18px;
+    background: #ffffff;
+    padding: 40px 28px 22px 28px;
+    box-shadow: 0 10px 35px rgba(9,16,29,0.12), 0 2px 8px rgba(9,16,29,0.06);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    color: #0b1b2b;
+}
+
+/* ===== Close button ===== */
+.rh-popup-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+.rh-popup-close:hover { background: rgba(9,16,29,0.06); }
+.rh-popup-close:active { transform: scale(0.98); }
+.rh-popup-close .rh-icon { width: 28px; height: 28px; display: block; }
+
+/* ===== Header ===== */
+.rh-popup-header { 
+    display: grid; 
+    gap: 6px; 
+    margin-bottom: 18px; 
+}
+
+.rh-popup-title {
+    margin: 0;
+    font-weight: 650;
+    font-size: 45px;
+    line-height: 1.15;
+    letter-spacing: 0;
+    color: #0b1b2b;
+    text-align: center;
+}
+
+.rh-popup-title {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Badge "без риска" */
+.rh-popup-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 14px;
+    background: #ff9f4a;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1;
+    margin: 0px auto 2px auto;
+    color: #ffffff;
+}
+.rh-popup-badge * { color: #ffffff !important; }
+
+/* ===== Promo card ===== */
+.rh-popup-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 16px;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 18px 16px 18px 16px;
+    box-shadow: 0 8px 30px rgba(9,16,29,0.12), 0 2px 6px rgba(9,16,29,0.06);
+    margin: 16px 0 30px 0;
+}
+
+.rh-popup-card {
+    position: relative;
+    overflow: visible;
+    padding-right: 200px;
+}
+
+.rh-popup-card-text {
+    margin: 0;
+    color: #0b1b2b;
+    font-size: 24px;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.rh-popup-card-text b,
+.rh-popup-card-text strong { font-weight: 800; }
+
+/* right icon from assets/img/check.svg */
+.rh-popup-card-ico {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 400px;
+    height: 400px;
+    display: block;
+    flex: none;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* ===== Actions ===== */
+.rh-popup-actions {
+    display: flex;
+    gap: 12px;
+    margin: 0 0 16px 0;
+}
+
+/* Base button */
+.rh-btn,
+.rh-popup-actions a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 16px 18px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: none;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1;
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(9,16,29,0.14), inset 0 -2px 0 rgba(0,0,0,0.12);
+    transition: transform 0.06s ease, filter 0.2s ease, box-shadow 0.2s ease;
+
+    /* align buttons flush */
+    flex: 1 1 0%;
+    border-radius: 12px;
+}
+
+/* Telegram by class or href */
+.rh-btn.telegram,
+.rh-btn.rh-btn-telegram,
+.rh-popup-actions a.telegram,
+.rh-popup-actions a[href*="t.me"],
+.rh-popup-actions a[href*="telegram.me"] {
+    background: linear-gradient(180deg, #5BB2FF 0%, #2F8AE5 100%);
+    color: #ffffff;
+}
+
+/* WhatsApp by class or href */
+.rh-btn.whatsapp,
+.rh-btn.rh-btn-whatsapp,
+.rh-popup-actions a.whatsapp,
+.rh-popup-actions a[href*="wa.me"],
+.rh-popup-actions a[href*="whatsapp.com"] {
+    background: linear-gradient(180deg, #6EDB62 0%, #3BB54A 100%);
+    color: #ffffff;
+}
+
+/* icons via ::before if <img> is not present */
+.rh-btn.rh-btn-telegram::before,
+.rh-popup-actions a.telegram::before,
+.rh-popup-actions a[href*="t.me"]::before,
+.rh-popup-actions a[href*="telegram.me"]::before {
+    content: "";
+    width: 44px;
+    height: 44px;
+    background: url("../img/telegram.svg") center/contain no-repeat;
+    display: inline-block;
+    margin-right: 8px;
+}
+.rh-btn.rh-btn-whatsapp::before,
+.rh-popup-actions a.whatsapp::before,
+.rh-popup-actions a[href*="wa.me"]::before,
+.rh-popup-actions a[href*="whatsapp.com"]::before {
+    content: "";
+    width: 44px;
+    height: 44px;
+    background: url("../img/whatsapp.svg") center/contain no-repeat;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.rh-btn:active,
+.rh-popup-actions a:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 10px rgba(9,16,29,0.18), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* ===== Note ===== */
+.rh-popup-note {
+    margin: 2px 0 0 0;
+    color: #505050;
+    font-size: 20px;
+    line-height: 1.1;
+    text-align: center;
+}
+
+/* ===== Animations: enter + exit ===== */
+@keyframes rhFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.05);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.0);
+    }
+}
+
+@keyframes rhFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1.0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+}
+
+@keyframes rhOverlayFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Smooth appearance when showing popup */
+.rh-popup-overlay.rh-visible .rh-popup {
+    animation: rhFadeIn 0.3s ease both;
+}
+
+/* Smooth closing: add .rh-leaving class to overlay before hiding */
+.rh-popup-overlay.rh-leaving .rh-popup {
+    animation: rhFadeOut 0.2s ease both;
+}
+.rh-popup-overlay.rh-leaving {
+    animation: rhOverlayFadeOut 0.2s ease both;
+}
+
+
+/* ===== Responsive ===== */
+@media (max-width: 920px) {
+    .rh-popup-title { font-size: 38px; }
+    .rh-popup-card-text { font-size: 20px; }
+}
+@media (max-width: 720px) {
+    .rh-popup {
+        max-width: 92vw;
+        padding: 24px 16px 18px 16px;
+        border-radius: 14px;
+    }
+    .rh-popup-title { font-size: clamp(26px, 6vw, 34px); }
+    .rh-popup-badge { font-size: 18px; padding: 8px 12px; border-radius: 8px; }
+    .rh-popup-card {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+        gap: 12px;
+        padding: 16px;
+    }
+    .rh-popup-card-ico { width: 80px; height: 80px; }
+    .rh-popup-actions { grid-template-columns: 1fr; gap: 12px; }
+    .rh-btn, .rh-popup-actions a { padding: 14px 16px; font-size: 16px; border-radius: 10px; }
+    .rh-popup-note { font-size: 16px; }
+    .rh-popup-close .rh-icon { width: 24px; height: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rh-popup-overlay.rh-visible .rh-popup,
+    .rh-popup-overlay.rh-leaving .rh-popup,
+    .rh-popup-overlay.rh-leaving {
+        animation: none !important;
+    }
+}
+
+.rh-popup-overlay { z-index: 2147483647; }
+#popup-root { position: relative; z-index: 2147483647; }
+
+@media (max-width: 540px) {
+    .rh-popup-card-ico {
+        display: none;
+    }
+}
+
+/* ===== Mobile title, badge spacing, WhatsApp button fix ===== */
+@media (max-width: 540px) {
+    /* 1) Title in two lines: compress line to 14ch and balance line breaks */
+    .rh-popup-title {
+        white-space: normal;
+        word-break: keep-all;
+        text-wrap: balance;
+        max-width: 14ch;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.15;
+    }
+
+    /* 2) Badge closer to title: reduce internal spacing between header elements */
+    .rh-popup-header {
+        gap: 2px;
+    }
+
+    /* 3) Buttons in two equal columns without overflow beyond edges */
+    .rh-popup-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .rh-popup-actions .rh-btn,
+    .rh-popup-actions a {
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+        margin: 0;
+        transform: none !important; /* exclude offsets on active */
+    }
+}
+
+/* ===== Mobile buttons overflow fix ===== */
+@media (max-width: 540px) {
+    /* Clip inner overflow to keep rounded corners clean */
+    .rh-popup {
+        overflow: hidden;
+    }
+
+    /* Two equal columns that are allowed to shrink below min-content */
+    .rh-popup-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    /* Allow grid items to shrink; prevent layout overflow */
+    .rh-popup-actions .rh-btn,
+    .rh-popup-actions a {
+        min-width: 0;            /* critical for grids */
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: normal;     /* allow wrapping */
+        word-break: break-word;  /* break long words if needed */
+        hyphens: auto;
+        overflow: hidden;        /* cut any internal overflow */
+        padding: 14px 12px;      /* slightly tighter padding on phones */
+        transform: none !important;
+    }
+
+    /* Make leading icons smaller so text has more room */
+    .rh-popup-actions .rh-btn::before,
+    .rh-popup-actions a::before {
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+        flex: none;
+    }
+}
+
+/* ===== Mobile: smaller button text for Telegram/WhatsApp ===== */
+@media (max-width: 540px) {
+    .rh-popup-actions .rh-btn,
+    .rh-popup-actions a {
+        font-size: 18px;       /* was ~26px on desktop */
+        line-height: 1.15;
+        text-align: center;
+    }
+}
+
+/* Narrower screens: even more compact icon + text */
+@media (max-width: 400px) {
+    .rh-popup-actions .rh-btn,
+    .rh-popup-actions a {
+        font-size: 16px;
+        padding: 12px 10px;
+    }
+    .rh-popup-actions .rh-btn::before,
+    .rh-popup-actions a::before {
+        width: 22px;
+        height: 22px;
+        margin-right: 6px;
+    }
+}
+
+/* ===== Mobile buttons: robust wrapping and layout ===== */
+
+/* 1) Normal wrapping: don't break words (WhatsApp), wrap only at spaces */
+@media (max-width: 540px) {
+    .rh-popup-actions .rh-btn,
+    .rh-popup-actions a {
+        /* fonts and sizes slightly more compact */
+        font-size: 17px;
+        line-height: 1.25;
+        min-height: 56px;
+
+        /* critical: disable word breaking and hyphenation */
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: anywhere;  /* wrap at spaces, not inside words */
+        hyphens: manual;
+
+        /* prevent overflow in grid */
+        min-width: 0;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* make icons more compact so text has enough width */
+    .rh-popup-actions .rh-btn::before,
+    .rh-popup-actions a::before {
+        width: 24px;
+        height: 24px;
+        margin-right: 8px;
+        flex: none;
+    }
+
+    /* grid cells can shrink below min-content without overflow */
+    .rh-popup-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    /* container clips scroll artifacts at border radius */
+    .rh-popup {
+        overflow: hidden;
+    }
+}
+
+/* 2) Very narrow screens: stack buttons in one column for perfect alignment */
+@media (max-width: 380px) {
+    .rh-popup-actions {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .rh-popup-actions .rh-btn,
+    .rh-popup-actions a {
+        font-size: 16px;
+        padding: 12px 12px;
+        min-height: 52px;
+    }
+    .rh-popup-actions .rh-btn::before,
+    .rh-popup-actions a::before {
+        width: 22px;
+        height: 22px;
+        margin-right: 6px;
+    }
+}
+
+/* ===== Phones 381-415px: smooth buttons layout ===== */
+@media (min-width: 381px) and (max-width: 415px) {
+    /* switch buttons to one column for visual stability */
+    .rh-popup-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* slightly more compact text and internal padding to avoid excess */
+    .rh-popup-actions .rh-btn,
+    .rh-popup-actions a {
+        font-size: 17px;
+        line-height: 1.25;
+        padding: 12px 14px;
+        min-height: 54px;
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: anywhere;
+    }
+
+    /* proportionally reduce icons */
+    .rh-popup-actions .rh-btn::before,
+    .rh-popup-actions a::before {
+        width: 22px;
+        height: 22px;
+        margin-right: 8px;
+        flex: none;
+    }
+}
+
+/* ===== Phones >410px: 2-line labels in TG/WA buttons ===== */
+@media (min-width: 411px) and (max-width: 540px) {
+    /* buttons remain flex: icon on left, text on right, centered on Y axis */
+    .rh-popup-actions .rh-btn,
+    .rh-popup-actions a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        font-size: 15.5px;
+        line-height: 1.2;
+
+        padding: 12px 12px;
+        min-height: 54px;
+
+        /* wrap only at spaces, don't break inside words */
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+        hyphens: manual;
+
+        /* strictly cut off anything beyond two lines */
+        text-align: center;
+        max-height: calc(1.2em * 2 + 12px * 2); /* 2 lines + vertical padding */
+        overflow: hidden;
+
+        min-width: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* icon of stable size, doesn't push text down */
+    .rh-popup-actions a::before,
+    .rh-popup-actions .rh-btn::before {
+        width: 22px;
+        height: 22px;
+        margin-right: 6px;
+        flex: none;
+    }
+}
+
+/* Desktop: make WhatsApp label single-line */
+@media (min-width: 721px) {
+    .rh-popup-actions a.whatsapp,
+    .rh-popup-actions a[href*="wa.me"],
+    .rh-popup-actions a[href*="whatsapp.com"] {
+        font-size: 24px;        /* slightly smaller than 26px */
+        line-height: 1;
+        white-space: nowrap;    /* don't wrap line */
+        gap: 8px;               /* slightly smaller gap between icon and text */
+    }
+    .rh-popup-actions a.whatsapp::before,
+    .rh-popup-actions a[href*="wa.me"]::before,
+    .rh-popup-actions a[href*="whatsapp.com"]::before {
+        width: 36px;            /* icon more compact so text has room */
+        height: 36px;
+        margin-right: 8px;
+    }
+}

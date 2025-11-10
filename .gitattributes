@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+# Treat images as binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg text eol=lf
+
+# Keep .pot/.po as text with LF
+*.po text eol=lf
+*.pot text eol=lf
+*.mo binary

@@ -1,0 +1,36 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Node / build
+node_modules/
+dist/
+build/
+
+# Composer / PHP tools
+vendor/
+composer.lock
+
+# Logs, archives
+*.log
+*.zip
+
+# WordPress
+wordpress/
+wp-content/
+*.sql
+
+# Translations
+*.po~
+*.pot~
+
+# Images cache
+*.cache
+
+# Misc
+coverage/
