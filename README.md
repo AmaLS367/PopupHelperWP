@@ -1,4 +1,4 @@
-# ReloHelper Popup
+# PopupHelperWP
 
 Lightweight, dependency-free popup for WordPress. Ships with a simple content system (JSON files in `assets/content`) and a JS configuration layer so you can run it on any page without touching PHP templates.
 
