@@ -2,7 +2,7 @@
 
 Lightweight, dependency-free popup for WordPress. Ships with a simple content system (JSON files in `assets/content`) and a JS configuration layer so you can run it on any page without touching PHP templates.
 
-> Version: 1.0.0 · License: MIT · Text domain: `relohelper-popup`
+> Version: 0.1.0 · License: MIT · Text domain: `relohelper-popup`
 
 ## Features
 
