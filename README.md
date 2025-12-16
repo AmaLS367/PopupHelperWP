@@ -13,6 +13,12 @@ Lightweight, dependency-free popup for WordPress. Ships with a simple content sy
 - Cache-busting via file modification time
 - Ready for translation (i18n)
 
+## Demo
+
+![Popup Screenshot 1](assets/img/screenshots/Screenshot%202025-11-27%20233733.png)
+
+![Popup Screenshot 2](assets/img/screenshots/Screenshot%202025-11-27%20233744.png)
+
 ## Installation
 
 1. Copy the `relohelper-popup` folder to `wp-content/plugins/`.
